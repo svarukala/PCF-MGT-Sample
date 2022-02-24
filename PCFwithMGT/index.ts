@@ -29,6 +29,7 @@ export class PCFwithMGT implements ComponentFramework.StandardControl<IInputs, I
 	private name: string | null;
 
 	private redirectUrl: string | null;
+	private clientId: string | null;
 	/**
 	 * Empty constructor.
 	 */
@@ -63,8 +64,9 @@ export class PCFwithMGT implements ComponentFramework.StandardControl<IInputs, I
 	{
 		this.name = context.parameters.Name.raw;
 		this.redirectUrl = context.parameters.RedirectUrl.raw;
+		this.clientId = context.parameters.ClientId.raw;
 		Providers.globalProvider = new Msal2Provider({
-			clientId: '5d442b28-b1ff-49bc-b51a-a2c5b7e122df', //'ba686da8-8cb8-4e41-9765-056a10dee34c',
+			clientId: this.clientId??'5d442b28-b1ff-49bc-b51a-a2c5b7e122df', //'ba686da8-8cb8-4e41-9765-056a10dee34c',
 			scopes: ['calendars.read', 'user.read', 'openid', 'profile', 'people.read', 'user.readbasic.all', 'files.read', 'files.read.all'],
 			redirectUri: this.redirectUrl??'https://apps.powerapps.com'
 		  });

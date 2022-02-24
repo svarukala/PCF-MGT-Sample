@@ -19,6 +19,7 @@
     </external-service-usage>
     <!-- property node identifies a specific, configurable piece of data that the control expects from CDS -->
     <property name="Name" display-name-key="Name" description-key="A name" of-type="SingleLine.Text" usage="bound" required="true" />
+    <property name="ClientId" display-name-key="Client Id" description-key="AAD App Id" of-type="SingleLine.Text" usage="bound" required="true" />
     <property name="RedirectUrl" display-name-key="Redirect Url" description-key="Redirect url needed for sucesful auth code pkce flow" of-type="SingleLine.Text" usage="bound" required="true" />
     <!--
       Property node's of-type attribute can be of-type-group attribute.
