@@ -30,6 +30,7 @@ export class PCFwithMGT implements ComponentFramework.StandardControl<IInputs, I
 
 	private redirectUrl: string | null;
 	private clientId: string | null;
+	private graphScopes: string[] | null;
 	/**
 	 * Empty constructor.
 	 */
@@ -65,9 +66,10 @@ export class PCFwithMGT implements ComponentFramework.StandardControl<IInputs, I
 		this.name = context.parameters.Name.raw;
 		this.redirectUrl = context.parameters.RedirectUrl.raw;
 		this.clientId = context.parameters.ClientId.raw;
+		this.graphScopes = this.getScopes(context.parameters.GraphScopes.raw??"'calendars.read', 'user.read', 'openid', 'profile', 'people.read', 'user.readbasic.all', 'files.read', 'files.read.all'");
 		Providers.globalProvider = new Msal2Provider({
 			clientId: this.clientId??'5d442b28-b1ff-49bc-b51a-a2c5b7e122df', //'ba686da8-8cb8-4e41-9765-056a10dee34c',
-			scopes: ['calendars.read', 'user.read', 'openid', 'profile', 'people.read', 'user.readbasic.all', 'files.read', 'files.read.all'],
+			scopes: this.graphScopes ?? ['calendars.read', 'user.read', 'openid', 'profile', 'people.read', 'user.readbasic.all', 'files.read', 'files.read.all'],
 			redirectUri: this.redirectUrl??'https://apps.powerapps.com'
 		  });
 
@@ -80,6 +82,15 @@ export class PCFwithMGT implements ComponentFramework.StandardControl<IInputs, I
 		);
 	}
 
+	private getScopes = (scopesCSV: string) => {
+		let scopes: string[] = [];
+		if (scopesCSV) {
+			scopes = scopesCSV
+						.split(",")
+						.map(s => s.trim());
+		}
+		return scopes;
+	}
 	/**
 	 * It is called by the framework prior to a control receiving new data.
 	 * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as “bound” or “output”
