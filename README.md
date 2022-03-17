@@ -21,5 +21,5 @@ Demo of PCF in Power App
 ![Demo](./PCFwithMGT/mgt-in-pcf-in-powerapp.gif)
 
 
-Dem of PCF in Test Harness (Note: You must set redirect url to localhost:8181 while testing in test harness)
+Demo of PCF in Test Harness (Note: You must set redirect url to localhost:8181 while testing in test harness)
 ![Demo](./PCFwithMGT/mgt-in-pcf.gif)

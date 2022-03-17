@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 //import * as serviceWorker from './serviceWorker';
 
-import { LoginType, Providers } from '@microsoft/mgt-element';
+import { LoginType, Providers, ProviderState } from '@microsoft/mgt-element';
 import { Msal2Provider } from '@microsoft/mgt-msal2-provider';
 
 export class PCFwithMGT implements ComponentFramework.StandardControl<IInputs, IOutputs> {
@@ -70,10 +70,10 @@ export class PCFwithMGT implements ComponentFramework.StandardControl<IInputs, I
 		Providers.globalProvider = new Msal2Provider({
 			clientId: this.clientId??'5d442b28-b1ff-49bc-b51a-a2c5b7e122df', //'ba686da8-8cb8-4e41-9765-056a10dee34c',
 			scopes: this.graphScopes ?? ['calendars.read', 'user.read', 'openid', 'profile', 'people.read', 'user.readbasic.all', 'files.read', 'files.read.all'],
-			redirectUri: this.redirectUrl??'https://apps.powerapps.com',
+			redirectUri: this.redirectUrl?? window.location.href, // 'https://apps.powerapps.com',
 			loginType: LoginType.Popup
 		  });
-
+		Providers.globalProvider.setState(ProviderState.SignedIn);
 		ReactDOM.render(
 		// Create the React component
 		React.createElement(
