@@ -12,9 +12,9 @@ The FileList component also supports Upload of files to SharePoint Onlines. Base
 3. Copy that URL and add that as the SPA redirect url for your Azure AD App. 
 
 # Pain Points and Things to note
-1. As noted above identifying the iframe url for the PCF component and setting that as the redirect URL is a issue as we don't know if that URL is going to change in the future.
+1. As noted above identifying the iframe url for the PCF component and setting that as the redirect URL is an issue.
 2. While testing using Test Harness the PCF with MGT works perfectly as long as your add http://localhost:8181 to redirect URL (under SPA)
-3. As you can see in demo below although user is logged in, MGT component is not picking up the context. Use must login again.
+3. As you can see in demo below although user is logged in, MGT component is not picking up the context. User must login again.
 
 # Demo
 Demo of PCF in Power App
